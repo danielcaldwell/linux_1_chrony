@@ -149,6 +149,16 @@ That's crazy. Also we can see the last offset is is changing the time by 0.0001 
 
 That's crazy. It's updating every 59.6 seconds ... 1 minute... That will take forever. 
 
+Another command to mix with this is the *watch* command. It will allow you to see the changes happen over time: 
+
+```
+sudo watch -n 0.1 chronyc tracking
+```
+Here you can see the changes happening: 
+
+![2019-12-10 - Watch Chronyc Tracking](https://user-images.githubusercontent.com/2634673/70672442-1a19d880-1c34-11ea-9818-e9027f7f6308.gif)
+
+
 
 ## Syncing the time server if there is a large discrepancy
 
@@ -167,6 +177,9 @@ be close to the next update.
 
 However, if you want to force an update to happen immediately, use the *burst* command. 
 
+In this example, I use makestep and burst to set the system's clock. 
+
+![2019-12-10 - make step](https://user-images.githubusercontent.com/2634673/70672892-7b8e7700-1c35-11ea-829c-a59219c10da6.gif)
 
 ## Forcing chrony to check the time servers. 
 
@@ -182,12 +195,15 @@ to.
 
 ## Forcing chrony to update the tracking info
 
-The tracking info will be off when chrony first starts. That is because it takes 3 measurements first. 
+The tracking info will be off when chrony first starts or when you change the date.  That is because it takes 3 measurements first. 
 In order to force those three measurements, use the *burst* command. 
 
 ```
 sudo burst 3/3
 ```
 
+Here we have chrony knowing the correct time, but it is different than the system time. We can *force* the tracking to update by forcing 3 good checks. A step can be done using makestep. 
+
+![2019-12-10 - Burst 3 3](https://user-images.githubusercontent.com/2634673/70672709-ebe8c880-1c34-11ea-8c5d-d8c143653cf6.gif)
 
 
